@@ -5,6 +5,7 @@ import Score from "./components/Score";
 import _ from "lodash";
 import "./styles/App.css";
 import titleImage from "./assets/title.png";
+import titleImageMobile from "./assets/title-mobile.png";
 
 function App({}) {
   //Start of game
@@ -95,6 +96,12 @@ function App({}) {
           className="game-title"
           onClick={restartGame}
         />
+        <img
+          src={titleImageMobile}
+          alt="PokeMemory Game"
+          className="game-title-mobile"
+          onClick={restartGame}
+        />
         <Score
           currentScore={currentScore}
           bestScore={bestScore}
@@ -135,6 +142,12 @@ function App({}) {
           src={titleImage}
           alt="PokeMemory Game"
           className="game-title"
+          onClick={restartGame}
+        />
+        <img
+          src={titleImageMobile}
+          alt="PokeMemory Game"
+          className="game-title-mobile"
           onClick={restartGame}
         />
         <Score
