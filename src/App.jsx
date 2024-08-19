@@ -4,6 +4,7 @@ import PokemonList from "./components/PokemonList";
 import Score from "./components/Score";
 import _ from "lodash";
 import "./styles/App.css";
+import titleImage from "./assets/title.png";
 
 function App({}) {
   //Start of game
@@ -89,7 +90,7 @@ function App({}) {
     return (
       <main>
         <img
-          src="src\assets\title.png"
+          src={titleImage}
           alt="PokeMemory Game"
           className="game-title"
           onClick={restartGame}
@@ -131,7 +132,7 @@ function App({}) {
     return (
       <main>
         <img
-          src="src\assets\title.png"
+          src={titleImage}
           alt="PokeMemory Game"
           className="game-title"
           onClick={restartGame}
