@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import Loading from "./components/Loading";
 import PokemonList from "./components/PokemonList";
+import Score from "./components/Score";
 import _ from "lodash";
 
 function App({}) {
   const [pokemon, setPokemon] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pickedPokemon, setPickedPokemon] = useState([]);
+  const [currentScore, setCurrentScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
 
   async function fetchPokemonList() {
     const pokemonAPI = "https://pokeapi.co/api/v2/pokemon/";
@@ -34,9 +37,18 @@ function App({}) {
     fetchPokemonList();
   }, []);
 
+  useEffect(() => {
+    if (currentScore > bestScore) setBestScore(currentScore);
+  }, [currentScore]);
+
   function resetPokemonList(id) {
-    if (pickedPokemon.includes(id)) console.log("Already chosen");
-    else setPickedPokemon((prevInfo) => [...prevInfo, id]);
+    if (pickedPokemon.includes(id)) {
+      setCurrentScore(0);
+      console.log("Already chosen");
+    } else {
+      setCurrentScore(currentScore + 1);
+      setPickedPokemon((prevInfo) => [...prevInfo, id]);
+    }
     fetchPokemonList();
   }
 
@@ -50,6 +62,7 @@ function App({}) {
 
   return (
     <main>
+      <Score currentScore={currentScore} bestScore={bestScore} />
       <PokemonList pokemon={pokemon} resetPokemonList={resetPokemonList} />
     </main>
   );
