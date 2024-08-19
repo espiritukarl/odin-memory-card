@@ -20,6 +20,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  overflow: hidden;
 
   font-family: "Fredoka", sans-serif;
 }
@@ -36,5 +37,7 @@ body {
     background-position: top left; /* Position the image at the top-left corner */
     background-size: auto; /* Default size (can be adjusted if needed) */
     background-attachment: scroll; /* Default scrolling behavior */
+
+    overflow: auto;
   }
 }
