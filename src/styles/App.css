@@ -1,0 +1,176 @@
+.game-title {
+  display: block;
+  margin: 0 auto;
+  width: 47%;
+  height: auto;
+  cursor: pointer;
+}
+
+.pokemon-list {
+  margin: 12px auto;
+  display: grid;
+  gap: 16px; /* Space between grid items */
+}
+
+.pokemon-list.easy {
+  grid-template-columns: repeat(3, 1fr); /* 2 columns */
+  grid-template-rows: repeat(2, 1fr); /* 2 rows */
+  padding: 25px;
+  height: 50vh;
+}
+
+.pokemon-list.medium {
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-template-rows: repeat(4, 1fr); /* 4 rows (3 rows + 1 additional row) */
+  height: 80vh;
+}
+
+.pokemon-list.hard {
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  grid-template-rows: repeat(5, 1fr); /* 5 rows */
+}
+
+.pokemon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.pokemon-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+
+  background-color: var(--yellow);
+  border: 5px solid var(--dark-blue);
+  border-radius: 24px;
+
+  transition: background-color 0.6s ease-out, border 0.6s ease-out;
+}
+
+.pokemon-card > h4 {
+  margin: 0;
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 3px rgb(255, 255, 255);
+  transition: color 0.6s ease-out;
+}
+
+.pokemon-card:hover {
+  background-color: rgba(255, 255, 255, 0.445);
+  border-color: transparent;
+  cursor: pointer;
+  color: var(--sky-blue);
+}
+
+.score-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: right;
+  margin: 16px;
+
+  font-size: 1.4rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+.button-container > button {
+  font-family: "Fredoka", sans-serif;
+  cursor: pointer;
+
+  padding: 32px 64px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.6rem;
+
+  display: inline-block;
+  background-color: var(--yellow);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 4px solid var(--dark-blue);
+  border-radius: 24px;
+
+  transition: all 0.3s ease;
+}
+
+.game-start {
+  margin: 24px;
+  width: 100%;
+  text-align: center;
+
+  font-size: 2rem;
+}
+
+.button-container > .game-start-btn {
+  margin: 24px auto;
+  font-size: 2rem;
+
+  border: none;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.445);
+  border-color: transparent;
+}
+
+button.active {
+  background-color: #e0dd00;
+  color: white;
+  border-color: transparent;
+  text-shadow: 1px 1px 3px rgb(0, 0, 0);
+}
+
+@media (max-width: 700px) {
+  .game-title {
+    width: 100%;
+  }
+  .game-start {
+    margin: 24px auto;
+    font-size: 1.5rem;
+  }
+
+  .button-container {
+    flex-direction: column;
+  }
+  .button-container > button {
+    width: 50%;
+    margin: 0 auto;
+    padding: 32px;
+    font-size: 1.5rem;
+  }
+  .button-container > .game-start-btn {
+    width: 60%;
+    font-size: 1.7rem;
+  }
+  .score-container {
+    position: relative;
+    text-align: center;
+
+    font-size: 1.5rem;
+  }
+  .pokemon-list.easy {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-rows: repeat(3, 1fr); /* 2 rows */
+  }
+
+  .pokemon-list.medium {
+    grid-template-columns: repeat(2, 1fr); /* 3 columns */
+    grid-template-rows: repeat(6, 1fr); /* 4 rows (3 rows + 1 additional row) */
+  }
+
+  .pokemon-list.hard {
+    grid-template-columns: repeat(2, 1fr); /* 4 columns */
+    grid-template-rows: repeat(10, 1fr); /* 5 rows */
+  }
+  .pokemon-card {
+    padding: 24px;
+  }
+}
