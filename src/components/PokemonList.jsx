@@ -1,10 +1,9 @@
 import Pokemon from "./Pokemon";
 
-function PokemonList({ pokemon, resetPokemonList }) {
+function PokemonList({ pokemon, resetPokemonList, difficulty }) {
   return (
     <>
-      <h1>Pokemon List</h1>
-      <section>
+      <section className={`pokemon-list ${difficulty}`}>
         {pokemon.map((poke) => (
           <Pokemon
             key={poke.id}
