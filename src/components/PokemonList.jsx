@@ -1,4 +1,3 @@
-// import { useEffect, useState } from "react";
 import Pokemon from "./Pokemon";
 
 function PokemonList({ pokemon, resetPokemonList }) {
