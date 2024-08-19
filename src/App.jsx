@@ -77,6 +77,7 @@ function App({}) {
   function restartGame() {
     setGameStart(false);
     setCurrentScore(0);
+    setPickedPokemon([]);
   }
 
   if (loading) {
