@@ -170,20 +170,22 @@ button.active {
     gap: 4px;
   }
   .pokemon-list.easy {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
-    grid-template-rows: repeat(3, 1fr); /* 2 rows */
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    padding: 0;
   }
 
   .pokemon-list.medium {
-    grid-template-columns: repeat(2, 1fr); /* 3 columns */
-    grid-template-rows: repeat(6, 1fr); /* 4 rows (3 rows + 1 additional row) */
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr);
   }
 
   .pokemon-list.hard {
-    grid-template-columns: repeat(2, 1fr); /* 4 columns */
-    grid-template-rows: repeat(10, 1fr); /* 5 rows */
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(10, 1fr);
   }
   .pokemon-card {
+    width: 75%;
     padding: 24px;
   }
 }
