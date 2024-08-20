@@ -1,6 +1,10 @@
 export default function GameMenu({ difficulty, setDifficulty, setGameStart }) {
   return (
     <>
+      <p className="instructions">
+        Get points by clicking on an image but don't click on any more than
+        once!
+      </p>
       <div className="button-container">
         <button
           onClick={() => setDifficulty("easy")}

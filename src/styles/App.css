@@ -5,8 +5,15 @@
   height: auto;
   cursor: pointer;
 }
+
 .game-title-mobile {
   display: none;
+}
+
+.instructions {
+  font-weight: 300;
+  text-align: center;
+  margin: 32px;
 }
 
 .pokemon-list {
