@@ -31,6 +31,7 @@
 .pokemon-list.hard {
   grid-template-columns: repeat(4, 1fr); /* 4 columns */
   grid-template-rows: repeat(5, 1fr); /* 5 rows */
+  height: 80vh;
 }
 
 .pokemon {
