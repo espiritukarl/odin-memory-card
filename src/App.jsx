@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Loading from "./components/Loading";
 import PokemonList from "./components/PokemonList";
+import GameMenu from "./components/GameMenu";
 import Score from "./components/Score";
 import _ from "lodash";
 import "./styles/App.css";
-import titleImage from "./assets/title.png";
-import titleImageMobile from "./assets/title-mobile.png";
+import Title from "./components/Title";
 
 function App({}) {
   //Start of game
@@ -91,66 +91,24 @@ function App({}) {
   if (!gameStart) {
     return (
       <main>
-        <img
-          src={titleImage}
-          alt="PokeMemory Game"
-          className="game-title"
-          onClick={restartGame}
-        />
-        <img
-          src={titleImageMobile}
-          alt="PokeMemory Game"
-          className="game-title-mobile"
-          onClick={restartGame}
-        />
+        <Title restartGame={restartGame} />
         <Score
           currentScore={currentScore}
           bestScore={bestScore}
           gameStart={gameStart}
           difficulty={difficulty}
         />
-        <div className="button-container">
-          <button
-            onClick={() => setDifficulty("easy")}
-            className={difficulty === "easy" ? "active" : ""}
-          >
-            Easy
-          </button>
-          <button
-            onClick={() => setDifficulty("medium")}
-            className={difficulty === "medium" ? "active" : ""}
-          >
-            Medium
-          </button>
-          <button
-            onClick={() => setDifficulty("hard")}
-            className={difficulty === "hard" ? "active" : ""}
-          >
-            Hard
-          </button>
-        </div>
-        <div className="button-container">
-          <button onClick={() => setGameStart(true)} className="game-start-btn">
-            Game Start
-          </button>
-        </div>
+        <GameMenu
+          difficulty={difficulty}
+          setDifficulty={setDifficulty}
+          setGameStart={setGameStart}
+        />
       </main>
     );
   } else {
     return (
       <main>
-        <img
-          src={titleImage}
-          alt="PokeMemory Game"
-          className="game-title"
-          onClick={restartGame}
-        />
-        <img
-          src={titleImageMobile}
-          alt="PokeMemory Game"
-          className="game-title-mobile"
-          onClick={restartGame}
-        />
+        <Title restartGame={restartGame} />
         <Score
           currentScore={currentScore}
           bestScore={bestScore}
