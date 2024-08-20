@@ -3,8 +3,8 @@ import "../styles/Loading.css";
 export default function Loading() {
   return (
     <>
-      <div class="wrapper">
-        <div class="pokeball"></div>
+      <div className="wrapper">
+        <div className="pokeball"></div>
       </div>
     </>
   );
