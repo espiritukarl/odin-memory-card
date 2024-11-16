@@ -97,8 +97,6 @@ function App({}) {
           <p>Do you want to play again?</p>
         </>
       );
-      setCurrentScore(0);
-      setPickedPokemon([]);
     }
   }, [currentScore, difficulty]);
 
@@ -112,8 +110,6 @@ function App({}) {
           <p>Do you want to play again?</p>
         </>
       );
-      setCurrentScore(0);
-      setPickedPokemon([]);
     } else {
       setCurrentScore(currentScore + 1);
       setPickedPokemon((prevInfo) => [...prevInfo, id]);
@@ -169,7 +165,10 @@ function App({}) {
         />
         <Modal
           isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
+          onClose={() => {
+            restartGame();
+            setIsModalOpen(false);
+          }}
           content={modalContent}
           restart={restartGame}
         />
