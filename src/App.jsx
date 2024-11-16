@@ -93,10 +93,12 @@ function App({}) {
       setModalContent(
         <>
           <h1>Congratulations!</h1>
-          <p>You have beaten the game.</p>
+          <p>You have beaten the game. Score: {difficultyLevels[difficulty]}</p>
           <p>Do you want to play again?</p>
         </>
       );
+      setCurrentScore(0);
+      setPickedPokemon([]);
     }
   }, [currentScore, difficulty]);
 
@@ -110,6 +112,8 @@ function App({}) {
           <p>Do you want to play again?</p>
         </>
       );
+      setCurrentScore(0);
+      setPickedPokemon([]);
     } else {
       setCurrentScore(currentScore + 1);
       setPickedPokemon((prevInfo) => [...prevInfo, id]);
