@@ -3,6 +3,7 @@ import Loading from "./components/Loading";
 import PokemonList from "./components/PokemonList";
 import GameMenu from "./components/GameMenu";
 import Score from "./components/Score";
+import Modal from "./components/Modal";
 import _ from "lodash";
 import "./styles/App.css";
 import Title from "./components/Title";
@@ -18,6 +19,7 @@ function App({}) {
   });
 
   //Populate of Pokemon from API
+  const [pokemonList, setPokemonList] = useState([]);
   const [pokemon, setPokemon] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -32,16 +34,33 @@ function App({}) {
     hard: 0,
   });
 
+  //Game Over screen
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState();
+
   async function fetchPokemonList() {
     const pokemonAPI = "https://pokeapi.co/api/v2/pokemon/";
     const numberOfPokemons = difficultyLevels[difficulty];
-    const pokemonUrls = Array.from(
-      { length: numberOfPokemons },
-      (_, index) => `${pokemonAPI}${index + 1}`
-    );
 
+    const pokemonUrls = [];
+    const usedIds = new Set();
+
+    while (pokemonUrls.length < numberOfPokemons) {
+      const randomId = Math.floor(Math.random() * 50) + 1;
+
+      // Check if the ID is already used
+      if (!usedIds.has(randomId)) {
+        usedIds.add(randomId); // Add the ID to the set
+        pokemonUrls.push(`${pokemonAPI}${randomId}`);
+      }
+    }
+
+    setPokemonList(pokemonUrls);
+  }
+
+  async function randomizePokemonList() {
     // Shuffle the URLs using Lodash
-    const shuffledUrls = _.shuffle(pokemonUrls);
+    const shuffledUrls = _.shuffle(pokemonList);
 
     try {
       const responses = await Promise.all(
@@ -57,21 +76,45 @@ function App({}) {
 
   useEffect(() => {
     fetchPokemonList();
-  }, [difficulty]);
+  }, [gameStart, difficulty]);
 
   useEffect(() => {
-    if (currentScore > bestScore[difficulty])
+    if (pokemonList.length > 0) {
+      randomizePokemonList();
+    }
+  }, [pokemonList]);
+
+  useEffect(() => {
+    if (currentScore > bestScore[difficulty]) {
       setBestScore((prevInfo) => ({ ...prevInfo, [difficulty]: currentScore }));
+    }
+    if (currentScore === difficultyLevels[difficulty]) {
+      setIsModalOpen(true);
+      setModalContent(
+        <>
+          <h1>Congratulations!</h1>
+          <p>You have beaten the game.</p>
+          <p>Do you want to play again?</p>
+        </>
+      );
+    }
   }, [currentScore, difficulty]);
 
   function resetPokemonList(id) {
     if (pickedPokemon.includes(id)) {
-      restartGame();
+      setIsModalOpen(true);
+      setModalContent(
+        <>
+          <h1>Game Over!</h1>
+          <p>You scored: {currentScore} </p>
+          <p>Do you want to play again?</p>
+        </>
+      );
     } else {
       setCurrentScore(currentScore + 1);
       setPickedPokemon((prevInfo) => [...prevInfo, id]);
     }
-    fetchPokemonList();
+    randomizePokemonList();
   }
 
   function restartGame() {
@@ -119,6 +162,12 @@ function App({}) {
           pokemon={pokemon}
           resetPokemonList={resetPokemonList}
           difficulty={difficulty}
+        />
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          content={modalContent}
+          restart={restartGame}
         />
       </main>
     );
