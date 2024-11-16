@@ -25,7 +25,7 @@ body {
   background-image: url("../assets/background.jpeg");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  overflow-y: auto;
   overflow-x: hidden;
 
   font-family: "Fredoka", sans-serif;
