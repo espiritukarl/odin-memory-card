@@ -53,9 +53,9 @@ button {
   transition: all 0.3s ease;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .modal-content {
-    height: 40%;
+    height: 70%;
     width: 80%;
   }
 }
