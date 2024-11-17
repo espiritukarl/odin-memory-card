@@ -75,8 +75,9 @@ function App({}) {
   }
 
   useEffect(() => {
+    setLoading(true);
     fetchPokemonList();
-  }, [gameStart, difficulty]);
+  }, [gameStart]);
 
   useEffect(() => {
     if (pokemonList.length > 0) {
